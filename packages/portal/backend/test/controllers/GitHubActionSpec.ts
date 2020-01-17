@@ -769,10 +769,11 @@ describe("GitHubActions", () => {
     }).timeout(TIMEOUT);
 
     it("Should be possible to find the members of a team.", async function() {
+        // NOTE: Adds creator of team as the maintainer, so we expect 3 people on team
         const val = await gh.listTeamMembers(TEAMNAME);
         Log.test("listed members: " + JSON.stringify(val));
         expect(val).to.be.an('array');
-        expect(val.length).to.equal(2);
+        expect(val.length).to.equal(3);
         expect(val).to.include(Test.GITHUB1.github);
         expect(val).to.include(Test.GITHUB2.github);
     }).timeout(TIMEOUT);
